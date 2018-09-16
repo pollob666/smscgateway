@@ -8,8 +8,8 @@
 		<version>7.4.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>rx-sipserver-sbb</artifactId>
-	<name>Core : SLEE : Services Rx SIP Server SBB</name>
+	<artifactId>rx-smppserver-sbb</artifactId>
+	<name>Core : SLEE : Services Rx SMPP Server SBB</name>
 	<dependencies>
 <!--
 		<dependency>
@@ -28,24 +28,9 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>domain</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mobicents.resources</groupId>
-			<artifactId>sip11-ratype</artifactId>
-			<version>${restcomm.resources.sip.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.cloudhopper</groupId>
-					<artifactId>ch-smpp</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.restcomm.slee.resource.smpp</groupId>
+			<artifactId>smpp-server-ra-ratype</artifactId>
+			<version>${smpp.ra.version}</version>
 		</dependency>
 		<dependency>
 			<artifactId>scheduler-ratype</artifactId>
@@ -59,11 +44,27 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<artifactId>smsc-library</artifactId>
 			<groupId>${project.groupId}</groupId>
 			<version>${project.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.0</version>
+            <scope>test</scope>
+        </dependency>
 -->
+		<dependency>
+		   <groupId>org.mobicents.smsc</groupId>
+		   <artifactId>rx-smppserver-sbb</artifactId>
+		   <version>7.4.179</version>
+		</dependency>
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -73,6 +74,7 @@
 	</dependencies>
 
 	<profiles>
+<!-- 
 		<profile>
 			<id>test</id>
 			<activation>
@@ -85,15 +87,32 @@
 					<version>${project.version}</version>
 					<type>test-jar</type>
 				</dependency>			
+                <dependency>
+					<groupId>org.restcomm.smpp</groupId>
+					<artifactId>smpp-extensions</artifactId>
+					<version>${smpp.extensions.version}</version>
+					<type>test-jar</type>
+                </dependency>           
 				<dependency>
 					<groupId>org.testng</groupId>
 					<artifactId>testng</artifactId>
 					<version>${testng.version}</version>
 					<scope>test</scope>
 				</dependency>
+                <dependency>
+                    <artifactId>statistics-api</artifactId>
+                    <groupId>org.restcomm.protocols.ss7.statistics</groupId>
+                    <version>${jss7.restcomm.version}</version>
+                </dependency>       
+                <dependency>
+                    <artifactId>statistics-impl</artifactId>
+                    <groupId>org.restcomm.protocols.ss7.statistics</groupId>
+                    <version>${jss7.restcomm.version}</version>
+                </dependency>       
 			</dependencies>
 		</profile>
-		<profile>
+ 
+ 		<profile>
 			<activation>
 				<property>
 					<name>maven.test.skip</name>
@@ -101,5 +120,6 @@
 				</property>
 			</activation>
 		</profile>
-	</profiles>
+-->	</profiles>
+
 </project>

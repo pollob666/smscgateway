@@ -20,6 +20,7 @@
 		<module>slee</module>
 		<module>bootstrap</module>
 		<module>bootstrap-wildfly</module>
+		<module>smpp</module>
 	</modules>
     <dependencyManagement>
         <dependencies>
@@ -32,6 +33,11 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>smsc-common-library</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>smsc</artifactId>
+                <version>${project.version}</version> 
             </dependency>
             <dependency>
                 <groupId>org.mobicents.smsc</groupId>

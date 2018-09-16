@@ -145,10 +145,11 @@
 		</dependency>
 
 		<!-- Management Shell -->
+		
 		<dependency>
 			<artifactId>shell-server-api</artifactId>
 			<groupId>org.restcomm.protocols.ss7.management</groupId>
-			<version>${jss7.restcomm.version}</version>
+			<version>8.0.0-179</version>
 		</dependency>
 <!--
 		<dependency>

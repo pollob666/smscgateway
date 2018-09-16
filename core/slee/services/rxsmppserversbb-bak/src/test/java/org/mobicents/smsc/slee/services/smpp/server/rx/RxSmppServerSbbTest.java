@@ -22,6 +22,8 @@
 
 package org.mobicents.smsc.slee.services.smpp.server.rx;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import static org.testng.Assert.*;
 
 import java.nio.ByteBuffer;
@@ -116,7 +118,6 @@ import com.cloudhopper.smpp.type.UnrecoverablePduException;
  * @author sergey vetyutnev
  * 
  */
- /*
 public class RxSmppServerSbbTest {
     private RxSmppServerSbbProxy sbb;
     private PersistenceRAInterfaceProxy pers;
@@ -183,10 +184,16 @@ public class RxSmppServerSbbTest {
 //                int maxMessageLength)
 //                throws Exception;
 //
-        esme = new Esme("Esme_1", "Esme_systemId_1", "pwd", "host", 0, false, null, SmppInterfaceVersionType.SMPP34, -1, -1, null, SmppBindType.TRANSCEIVER,
-                SmppSession.Type.CLIENT, windowSize, connectTimeout, requestExpiryTimeout, clientBindTimeout, windowMonitorInterval, windowWaitTimeout, "Esme_1", true, 30000, 0,
-                0L, -1, -1, "^[0-9a-zA-Z]*", -1, -1, "^[0-9a-zA-Z]*", 0, false, 0, 0, 0, 0, -1, -1, 0, -1, -1, -1, -1);
+//        esme = new Esme("Esme_1", "Esme_systemId_1", "pwd", "host", 0, false, null, SmppInterfaceVersionType.SMPP34, -1, -1, null, SmppBindType.TRANSCEIVER,
+//                SmppSession.Type.CLIENT, windowSize, connectTimeout, requestExpiryTimeout, clientBindTimeout, windowMonitorInterval, windowWaitTimeout, "Esme_1", true, 30000, 0,
+//                0L, -1, -1, "^[0-9a-zA-Z]*", -1, -1, "^[0-9a-zA-Z]*", 0, false, 0, 0, 0, 0, -1, -1, 0, -1, -1, -1, -1);
 
+        esme = new Esme("Esme_1", "Esme_systemId_1", "pwd", "host", 10, false, SmppBindType.TRANSCEIVER.toString(), null,
+                SmppInterfaceVersionType.SMPP34.toString(), (byte) -1, (byte) -1, null, SmppSession.Type.CLIENT.toString(), windowSize, connectTimeout,
+                requestExpiryTimeout, windowMonitorInterval, windowWaitTimeout, "Esme_1", true, 30000, -1, -1, "^[0-9a-zA-Z]*", -1, -1, "^[0-9a-zA-Z]*", 0, 0,
+                0, 0, 0, -1, -1, -1, -1);
+
+        
         SmsSetCache.getInstance().clearProcessingSmsSet();
 
         sbb.setMaxMessagesPerStep(2);
@@ -217,15 +224,15 @@ public class RxSmppServerSbbTest {
 
         RxSmppServerSbb.smscPropertiesManagement.setSmppEncodingForGsm7(SmppEncoding.Utf8);
         byte[] res = sbb.recodeShortMessage(0, s1, null);
-        assertEquals(res, msgUtf8);
+        AssertJUnit.assertEquals(res, msgUtf8);
 
         RxSmppServerSbb.smscPropertiesManagement.setSmppEncodingForUCS2(SmppEncoding.Utf8);
         res = sbb.recodeShortMessage(8, s1, null);
-        assertEquals(res, msgUtf8);
+        AssertJUnit.assertEquals(res, msgUtf8);
 
         RxSmppServerSbb.smscPropertiesManagement.setSmppEncodingForUCS2(SmppEncoding.Unicode);
         res = sbb.recodeShortMessage(8, s1, null);
-        assertEquals(res, msgUcs2);
+        AssertJUnit.assertEquals(res, msgUcs2);
 
         RxSmppServerSbb.smscPropertiesManagement.setSmppEncodingForGsm7(SmppEncoding.Unicode);
         byte[] udh = new byte[] { 0x05, 0x00, 0x03, 0x29, 0x02, 0x02 };
@@ -233,7 +240,7 @@ public class RxSmppServerSbbTest {
         System.arraycopy(udh, 0, aMsgB, 0, udh.length);
         System.arraycopy(msgUcs2, 0, aMsgB, udh.length, msgUcs2.length);
         res = sbb.recodeShortMessage(0, s1, udh);
-        assertEquals(res, aMsgB);
+        AssertJUnit.assertEquals(res, aMsgB);
 
         Charset isoCharset = Charset.forName("ISO-8859-1");
         byte[] msgAscii = s2.getBytes(isoCharset);
@@ -241,7 +248,7 @@ public class RxSmppServerSbbTest {
         System.arraycopy(udh, 0, aMsgC, 0, udh.length);
         System.arraycopy(msgAscii, 0, aMsgC, udh.length, msgAscii.length);
         res = sbb.recodeShortMessage(4, s2, udh);
-        assertEquals(res, aMsgC);
+        AssertJUnit.assertEquals(res, aMsgC);
     }
 
     @Test(groups = { "RxSmppServer" })
@@ -974,4 +981,3 @@ public class RxSmppServerSbbTest {
         public int nationalAlphabet = 0;
     }
 }
-*/

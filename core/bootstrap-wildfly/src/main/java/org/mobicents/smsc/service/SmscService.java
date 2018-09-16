@@ -153,7 +153,6 @@ public class SmscService implements Service<SmscService> {
                 shellExecutors.add(ss7Service.getValue().getBeanSctpShellExecutor());
                 shellExecutors.add(ss7Service.getValue().getBeanSccpExecutor());
                 shellExecutors.add((ShellExecutor)smppService.getValue().getSmppShellExecutor());
-
                 String address = getPropertyString("ShellExecutor", "address", "127.0.0.1");
                 int port = getPropertyInt("ShellExecutor", "port", 3435);
                 String securityDomain = getPropertyString("ShellExecutor", "securityDomain", "jmx-console");
